@@ -22,7 +22,10 @@
 
   <!-- ===== NAVIGATION BAR ===== -->
   <nav>
-    <ul>
+    <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+    <ul id="navMenu">
       <li><a href="../index.html">Home</a></li>
       <li class="has-dropdown">
         <a href="about.html">About</a>
@@ -53,10 +56,15 @@
 
   <section class="page-content">
     <h2 class="section-heading">Newsletter Archive</h2>
-    <p>Placeholder — link to or embed past newsletters here, e.g. as a list of downloadable PDFs or issues.</p>
-    <ul class="plain-list">
-      <li>Issue #1 — Summer 2026 (example entry)</li>
-      <li>Issue #2 — Autumn 2026 (example entry)</li>
+    <ul class="plain-list" id="newsletter-list">
+
+      <!-- One <li> per issue. Copy this block to add another. -->
+      <li>
+        <a href="#" onclick="window.AFC_openPdfViewer('../pdfs/Lent23.pdf', 'Issue 1 — Summer 2026'); return false;">
+          Issue 1 — Summer 2026
+        </a>
+      </li>
+
     </ul>
   </section>
 
@@ -72,6 +80,28 @@
     </p>
     <p>&copy; Cambridge Archaeological Field Club</p>
   </footer>
+
+  <!-- ===== PDF VIEWER MODAL ===== -->
+  <div class="pdf-modal" id="pdfModal" aria-hidden="true">
+    <div class="pdf-modal-top">
+      <span class="pdf-modal-title" id="pdfModalTitle"></span>
+      <button class="pdf-modal-close" id="pdfModalClose" aria-label="Close">&times;</button>
+    </div>
+    <div class="pdf-modal-body">
+      <button class="pdf-nav-btn pdf-prev" id="pdfPrev" aria-label="Previous page">&#10094;</button>
+      <div class="pdf-canvas-wrap">
+        <canvas id="pdfCanvas"></canvas>
+        <div class="pdf-status" id="pdfStatus">Loading…</div>
+      </div>
+      <button class="pdf-nav-btn pdf-next" id="pdfNext" aria-label="Next page">&#10095;</button>
+    </div>
+    <div class="pdf-modal-bottom">
+      <span id="pdfPageInfo"></span>
+    </div>
+  </div>
+
   <script src="../js/main.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+  <script src="../js/pdf-viewer.js"></script>
 </body>
 </html>
